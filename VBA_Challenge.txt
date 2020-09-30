@@ -1,0 +1,52 @@
+Sub Market()
+
+     ' Set an initial variable for holding the ticker letter
+  Dim Ticker_letter As String
+  Ticker_letter = Range("I")
+
+  ' Set an initial variable for holding the yearly change per stock
+  Dim Yearly_Change As Double
+  Yearly_Change = Range("J")
+  Yearly_Change = 0
+
+' Set an initial variable for holding the percentage change per stock
+  Dim Percentage_Change As Double
+  Percentage_Change = Range("K")
+  Percentage_Change = 0
+
+' Set an initial variable for holding the total volume per stock
+  Dim Total_Volume As Double
+  Total_Volume = Range("L")
+  Total_Volume = 0
+    
+' Loop through all Stocks on one year
+  For i = 2 To 797711
+
+' Sumarizar los Tickers por accion a todos los años de cada en Range("I")
+    Ticker_letter = Cells(i, 1)
+
+' Yearly opening - Yearly closing por accion
+    Yearly_Change = Cells(i, 3).Value - Cells(i, 6).Value
+    If Yearly_Change.Value < 0 Then
+        Range(Yearly_Change).Interior.ColorIndex = 4
+    Else
+        Range(Yearly_Change).Interior.ColorIndex = 5
+    
+    End If
+         
+' Percentage differential by year
+    If Range("C") Or Range("F") <> 0 Then
+        Percentage_Change = Cells(i, 3).Value / Cells(i, 6).Value
+    Else
+        Percentage_Change = 0
+    
+    End If
+        
+' sumarizar el total volume stock
+    Total_Volume = Cells(i, 1)
+    
+Next i
+
+
+End Sub
+
